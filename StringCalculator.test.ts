@@ -61,4 +61,29 @@ describe('String Calculator', () => {
         expect(add('1\n2,3')).toBe(6);
     });
 
+    // Test case 13: Custom delimiter with multiple characters
+    it('should support custom delimiters with multiple characters', () => {
+        expect(add('//[***]\n1***2***3')).toBe(6);
+    });
+
+
+    // Test case 14: Custom delimiter can be any character
+    it('should support custom delimiters (e.g., |)', () => {
+        expect(add('//|\n1|2|3')).toBe(6);
+    });
+
+    // Test case 15: Negative numbers should throw an exception
+    it('should throw an exception for negative numbers', () => {
+        expect(() => add('1,-2')).toThrowError('Negative numbers not allowed: -2');
+    });
+
+    // Test case 14: Multiple negative numbers should throw an exception with all negative numbers in the message
+    it('should throw an exception for multiple negative numbers', () => {
+        expect(() => add('1,-2,-3')).toThrowError('Negative numbers not allowed: -2,-3');
+    });
+
+    // Test case 17: Numbers with leading/trailing spaces should work
+    it('should handle numbers with leading/trailing spaces', () => {
+        expect(add('  1, 2 ,  3 ')).toBe(6);
+    });
 });
